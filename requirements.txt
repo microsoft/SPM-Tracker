@@ -1,0 +1,9 @@
+Cython
+future
+matplotlib
+numpy
+opencv-python
+Pillow
+pprint
+protobuf
+PyYAML

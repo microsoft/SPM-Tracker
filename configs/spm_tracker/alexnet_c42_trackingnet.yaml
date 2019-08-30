@@ -1,0 +1,38 @@
+NAME: 'AlexNet_C42'
+TRACKER_TYPE: 'spm_tracker'
+
+SPM_TRACKER:
+  USE_PIL_LIB: False
+  CM:
+    BACKBONE: 'alexnet'
+    FEAT_NAME: 'conv5'
+    ANCHOR_RATIOS: [0.33, 0.5, 1.0, 2.0, 3.0]
+    ANCHOR_SCALES: [8.0]
+    CLS_SCALE_FACTOR: 0.001
+    BBOX_SCALE_FACTOR: 0.001
+    Z_CONTEXT_AMOUNT: 0.5
+    WEIGHTS_FILE: 'output/train/spm_tracker/AlexNet_C42/rpn_epoch_49_params.pt'
+  
+  FM:
+    FEAT_NAME_LIST: ['conv4', 'conv2']
+    ROI_FEAT_BN: True
+    ROI_POOL_SIZE: [6, 6]
+    POOL_CONVS: [256]
+    HIDDEN_LAYER_CHANNEL: 256
+    NUM_LINEAR_LAYERS: 2
+    BBOX_VAR_INV: [5.0, 5.0, 10.0, 10.0]
+    WEIGHTS_FILE: 'output/train/spm_tracker/AlexNet_C42/rcnn_epoch_49_params.pt'
+  
+  INFERENCE:
+    DEBUG_VIS_ON: False
+    Z_SIZE: 127
+    X_SIZE: 271
+    FM_SCORE_INFLUENCE: 0.5
+    FM_BBOX_INFLUENCE: 3.0
+    WINDOWS_INFLUENCE: 0.4
+    LR: 0.5
+    MAX_SCORE_THRESHOLD: 0.2
+    SCORE_THRESH_FACTOR: 0.1
+    NUM_CANDIDATES: 9
+    NUM_NEAR_CANDIDATES: 1
+    NMS_THRESHOLD: 0.5
